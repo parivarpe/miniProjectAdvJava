@@ -16,19 +16,24 @@ function Hello() {
   //React Hooks -
   //useState : It works with Dom internally. it take care of DOM manipulation
 
-  let [counter1, setCounter] = useState(1); // declaration using useState
+  let [username, setUserName] = useState(""); // declaration using useState
+  let [password, setPass] = useState("");
+  const handleUserName = (e) => {
+    const newUname = e.target.value;
+    setUserName(newUname);
+  };
 
-  const like = () => {
-    const newCount = counter1 + 1;
-    setCounter(newCount);
+  const handlepass = (e) => {
+    const newPass = e.target.value;
+    setPass(newPass);
   };
 
   return (
     <div>
-      <h1>
-        Counter : {counter1}
-        <button onClick={like}> Like</button>
-      </h1>
+      <input type="text" value={username} onChange={handleUserName}></input>
+      <input type="password" value={password} onChange={handlepass}></input>
+      <h1>{username}</h1>
+      <h1>{password}</h1>
     </div>
   );
 }
