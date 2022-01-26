@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 export default function App() {
-  let preLoginList = ["/", "/login", "/register"];
+  let preLoginList = ["/", "/login", "/register", "/ForgotPassword"];
   let location = useLocation();
 
   return (
@@ -35,8 +35,12 @@ export default function App() {
 
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/Welcome-home" element={<Wel></Wel>}></Route>
-        <Route path="/explore" element={<Explore></Explore>}></Route>
+        <Route path="/explore" element={<Wel></Wel>}></Route>
         <Route path="/message" element={<Wel></Wel>}></Route>
+        <Route
+          path="/ForgotPassword"
+          element={<ForgetPassword></ForgetPassword>}
+        ></Route>
       </Routes>
     </>
   );
@@ -63,6 +67,7 @@ function Login() {
       <div>
         <input type="button" value="Login" onClick={Authenticate}></input>
       </div>
+      <Link to="/ForgotPassword">ForgotPassword</Link>
     </div>
   );
 }
@@ -71,11 +76,26 @@ function Register() {
   return <div>Register</div>;
 }
 
+function ForgetPassword() {
+  return (
+    <div>
+      <h1>UI for ForgotPassword</h1>
+    </div>
+  );
+}
+
 function Wel() {
   let navigate = useNavigate();
+
+  const signOut = () => {
+    navigate("/login");
+  };
   return (
     <div>
       <h1>Welcome Page</h1>
+      <div>
+        <input type="button" value="SignOut" onClick={signOut}></input>
+      </div>
     </div>
   );
 }
