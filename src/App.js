@@ -1,15 +1,20 @@
 import { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <Router>
+      {/*Logic for Navigation*/}
+
+      <Link to="/">Page1 | </Link>
+      <Link to="/page2">Page2</Link>
+
       <Routes>
         <Route path="/" element={<Page1></Page1>}></Route>
 
         <Route path="/page2" element={<Page2></Page2>}></Route>
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
