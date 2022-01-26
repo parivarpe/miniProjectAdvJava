@@ -7,7 +7,7 @@ export default function App() {
   );
 }
 
-//function with parameter
-function Hello(p1) {
-  return <h1>Hello {p1.name}</h1>;
+//function with parameter restructuring
+function Hello({ name, id }) {
+  return <h1>Hello {name}</h1>;
 }
