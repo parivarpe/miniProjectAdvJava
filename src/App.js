@@ -16,14 +16,12 @@ export default function App() {
     <>
       {/*Logic for Navigation*/}
 
-      {preLoginList.includes(location.pathname) && (
+      {preLoginList.includes(location.pathname) ? (
         <div>
           <Link to="/">Login | </Link>
           <Link to="/register">Register</Link>
         </div>
-      )}
-
-      {!preLoginList.includes(location.pathname) && (
+      ) : (
         <div>
           <Link to="/Welcome-home">Home | </Link>
           <Link to="/Welcome-home">Explore | </Link>
@@ -37,7 +35,7 @@ export default function App() {
 
         <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/Welcome-home" element={<Wel></Wel>}></Route>
-        <Route path="/explore" element={<Wel></Wel>}></Route>
+        <Route path="/explore" element={<Explore></Explore>}></Route>
         <Route path="/message" element={<Wel></Wel>}></Route>
       </Routes>
     </>
