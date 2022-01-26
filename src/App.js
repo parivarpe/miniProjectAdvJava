@@ -1,66 +1,83 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 export default function App() {
+  let preLoginList = ["/", "/login", "/register"];
+  let location = useLocation();
+
   return (
-    <Router>
+    <>
       {/*Logic for Navigation*/}
 
-      <Link to="/">Page1 | </Link>
-      <Link to="/page2">Page2</Link>
+      {preLoginList.includes(location.pathname) && (
+        <div>
+          <Link to="/">Login | </Link>
+          <Link to="/register">Register</Link>
+        </div>
+      )}
+
+      {!preLoginList.includes(location.pathname) && (
+        <div>
+          <Link to="/Welcome-home">Home | </Link>
+          <Link to="/Welcome-home">Explore | </Link>
+          <Link to="/Welcome-home">Home</Link>
+        </div>
+      )}
 
       <Routes>
-        <Route path="/" element={<Page1></Page1>}></Route>
+        <Route path="/" element={<Login></Login>}></Route>
+        <Route path="/login" element={<Login></Login>}></Route>
 
-        <Route path="/page2" element={<Page2></Page2>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
+        <Route path="/Welcome-home" element={<Wel></Wel>}></Route>
+        <Route path="/explore" element={<Wel></Wel>}></Route>
+        <Route path="/message" element={<Wel></Wel>}></Route>
       </Routes>
-    </Router>
+    </>
   );
 }
 
 //Routers
-function Page1() {
+
+function Login() {
+  let navigate = useNavigate();
+  const Authenticate = () => {
+    navigate("/Welcome-home");
+  };
   return (
     <div>
-      <h1> Page1 </h1>
-      <p>
-        {" "}
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident qui
-        consequuntur obcaecati blanditiis repellendus, molestias dolorem eum
-        delectus numquam labore. Nostrum soluta, accusamus hic earum
-        praesentium, blanditiis repellat iste sapiente officiis nam dolore.
-        Fugit facere voluptas accusamus quas hic commodi, modi dicta vel iste
-        quaerat, reprehenderit aperiam delectus recusandae laboriosam? Voluptas
-        quod ducimus aperiam! Nesciunt vitae minima dolores ipsam suscipit
-        veritatis sit ratione numquam aut, saepe nostrum nulla quis labore
-        tenetur officia sapiente expedita neque consectetur delectus fuga
-        incidunt unde iure porro? Deserunt et veritatis laboriosam quam
-        perspiciatis tempora culpa, molestias voluptatem fugiat illo laudantium
-        debitis, in ipsa qui quaerat?{" "}
-      </p>
+      <h1>Login Page</h1>
+
+      <div>
+        <input type="text" id="id1"></input>
+      </div>
+      <div>
+        <input type="password" id="id2"></input>
+      </div>
+
+      <div>
+        <input type="button" value="Login" onClick={Authenticate}></input>
+      </div>
     </div>
   );
 }
 
-function Page2() {
+function Register() {
+  return <div>Register</div>;
+}
+
+function Wel() {
+  let navigate = useNavigate();
   return (
     <div>
-      <h1> Page2 </h1>
-      <p>
-        {" "}
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident qui
-        consequuntur obcaecati blanditiis repellendus, molestias dolorem eum
-        delectus numquam labore. Nostrum soluta, accusamus hic earum
-        praesentium, blanditiis repellat iste sapiente officiis nam dolore.
-        Fugit facere voluptas accusamus quas hic commodi, modi dicta vel iste
-        quaerat, reprehenderit aperiam delectus recusandae laboriosam? Voluptas
-        quod ducimus aperiam! Nesciunt vitae minima dolores ipsam suscipit
-        veritatis sit ratione numquam aut, saepe nostrum nulla quis labore
-        tenetur officia sapiente expedita neque consectetur delectus fuga
-        incidunt unde iure porro? Deserunt et veritatis laboriosam quam
-        perspiciatis tempora culpa, molestias voluptatem fugiat illo laudantium
-        debitis, in ipsa qui quaerat?{" "}
-      </p>
+      <h1>Welcome Page</h1>
     </div>
   );
 }
